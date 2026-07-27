@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/NFW-logo-favicon.png" alt="NoFluffWisdom Logo" width="180">
+  <img src="assets/NFW-logo-favicon-transparent.png" alt="NoFluffWisdom Logo" width="180">
 </p>
 
 # NoFluffWisdom Landing Page
