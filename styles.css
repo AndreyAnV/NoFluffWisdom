@@ -1,59 +1,35 @@
-/* ============================================================
-   NOFLUFFWISDOM — DESIGN TOKENS (Round 3 — mobile-first + theming)
-   Mobile-first: base rules target small screens; min-width queries
-   layer on tablet/desktop enhancements.
-   Palette:  Black Olive (dark bands) · Platinum/Paper (light layer)
-             Dark Red #8C0007 — words, highlights, glow only
-   Type:     Instrument Serif (display accents) / Montserrat (main UI + body)
-             IBM Plex Mono (utility: eyebrows, stats, captions)
-   Theme:    toggle sets [data-theme="dark"|"light"] on <html>,
-             default dark, persisted in localStorage
-   ============================================================ */
-
 :root {
-  /* brand — constant across themes */
   --red: #8C0007;
   --red-bright: #B4000C;
   --red-glow: rgba(180, 0, 12, 0.35);
 
-  /* text/surface used on the always-dark rhythm bands (hero, pillars,
-     problem, experience, final-cta, footer) — stays constant */
   --on-dark: #E6E1DE;
   --on-dark-dim: #C9C3BD;
   --on-dark-faint: #8D897F;
 
-  --band-1: #1E2117; /* problem / experience */
-  --band-2: #25291C; /* hero / pillars */
-  --band-3: #14160E; /* final-cta / footer */
-
   --glass-dark: rgba(230, 225, 222, 0.055);
   --glass-dark-border: rgba(230, 225, 222, 0.13);
 
-  /* ---- theme-aware layer (light default; overridden below) ---- */
   --ink: #25291C;
   --ink-dim: rgba(37, 41, 28, 0.62);
   --ink-faint: rgba(37, 41, 28, 0.45);
   --paper: #E6E1DE;
 
-  --nav-bg: rgba(230, 225, 222, 0.72);
   --glass-paper: rgba(37, 41, 28, 0.035);
   --glass-paper-border: rgba(37, 41, 28, 0.10);
   --media-tint-a: rgba(37, 41, 28, 0.08);
   --media-tint-b: rgba(140, 0, 7, 0.10);
 
-  /* type */
   --font-display: 'Instrument Serif', Georgia, serif;
   --font-body: 'Geist', -apple-system, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 
-  /* 8pt spacing scale (+15% section whitespace) */
   --sp-1: 9px;   --sp-2: 16px;  --sp-3: 23px;  --sp-4: 30px;
   --sp-5: 42px;  --sp-6: 56px;  --sp-7: 74px;  --sp-8: 102px;
   --sp-9: 138px;
 
   --radius-lg: 24px;
   --radius-md: 18px;
-  --radius-sm: 12px;
 
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
@@ -708,6 +684,19 @@ body:not(.is-loading) .nav {
   border-radius: var(--radius-lg);
   background: linear-gradient(150deg, var(--media-tint-a), var(--media-tint-b));
   border: 1px solid var(--glass-paper-border);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.5s var(--ease-bounce), box-shadow 0.5s var(--ease-soft);
+}
+.content-row__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.content-row:hover .content-row__media {
+  transform: scale(1.04) translateY(-4px);
+  box-shadow: 0 22px 45px -15px rgba(37, 41, 28, 0.25);
 }
 .content-row__tag { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--red-bright); }
 .content-row__body h3 { font-family: var(--font-display); font-weight: 400; font-size: 24px; margin-top: var(--sp-2); color: var(--ink); }

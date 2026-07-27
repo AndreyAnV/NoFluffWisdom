@@ -1,22 +1,6 @@
-/* ============================================================
-   NOFLUFFWISDOM — interaction layer (Round 3 pass)
-   1. Loading fade-in
-   2. Mobile nav toggle
-   3. Scroll progress indicator
-   4. Stagger reveal-on-scroll
-   5. Mouse-reactive glass ([data-glass] cards)
-   6. Hero parallax (glow + orbs drift with scroll)
-   7. Animated subscriber counter
-   8. Join button -> email form reveal
-   9. Dark / light theme toggle
-   10. Nav auto-hide: visible on hero + last two sections, hidden
-       in between, reveals on any upward scroll
-   ============================================================ */
-
 (function () {
   'use strict';
 
-  /* ---------- Force scroll to top on refresh ---------- */
   if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
   }
@@ -25,17 +9,14 @@
     window.scrollTo(0, 0);
   });
 
-  /* ---------- 1. Loading fade-in ---------- */
   window.addEventListener('load', function () {
     window.scrollTo(0, 0);
     requestAnimationFrame(function () {
       document.body.classList.remove('is-loading');
     });
   });
-  // Fallback in case 'load' already fired or fonts stall
   setTimeout(function () { document.body.classList.remove('is-loading'); }, 900);
 
-  /* ---------- 2. Mobile nav toggle & backdrop blur ---------- */
   var nav = document.getElementById('nav');
   var navToggle = document.getElementById('navToggle');
   var navBackdrop = document.getElementById('navBackdrop');
@@ -59,7 +40,6 @@
     });
   }
 
-  /* ---------- 3. Scroll progress indicator ---------- */
   var progressBar = document.getElementById('progressBar');
   var ticking = false;
 
@@ -81,12 +61,9 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   updateProgress();
 
-  /* ---------- 4. Stagger reveal-on-scroll ---------- */
-  // Assign a stagger index per sibling group (elements sharing a parent)
   (function assignStaggerIndices() {
     var groups = new Map();
     document.querySelectorAll('.reveal').forEach(function (el) {
-      // Don't overwrite explicit hero line delays
       if (el.className && el.className.indexOf('hero__line-') !== -1) {
         return;
       }
@@ -106,7 +83,7 @@
           if (entry.isIntersecting) {
             if (!entry.target.className || entry.target.className.indexOf('hero__line-') === -1) {
               var idx = entry.target.__staggerIndex || 0;
-              var delay = Math.min(idx * 80, 320); // ms, capped
+              var delay = Math.min(idx * 80, 320);
               entry.target.style.transitionDelay = delay + 'ms';
             }
             entry.target.classList.add('is-visible');
@@ -121,7 +98,6 @@
     revealEls.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
-  /* ---------- 5. Mouse-reactive glass ---------- */
   var glassEls = document.querySelectorAll('[data-glass]');
   glassEls.forEach(function (el) {
     el.addEventListener('mousemove', function (e) {
@@ -137,10 +113,6 @@
     });
   });
 
-  /* ---------- 6. Hero parallax ---------- */
-  // Fixed background stays pinned at top 0 without translateY displacement
-
-  /* ---------- 7. Animated subscriber counter ---------- */
   var counterEl = document.getElementById('subscriberCount');
 
   function animateCounter(el) {
@@ -151,7 +123,6 @@
     function step(timestamp) {
       if (!start) start = timestamp;
       var progress = Math.min((timestamp - start) / duration, 1);
-      // Quintic ease-out glides softly into 20,000+ without any abrupt stops
       var eased = 1 - Math.pow(1 - progress, 5);
       var value = Math.floor(eased * target);
       el.textContent = value.toLocaleString('en-US') + '+';
@@ -186,7 +157,6 @@
     counterEl.textContent = (counterEl.getAttribute('data-target') || '0') + '+';
   }
 
-  /* ---------- Success Modal Popup Handler ---------- */
   var successModal = document.getElementById('successModal');
   var modalClose = document.getElementById('modalClose');
   var modalOverlay = document.getElementById('modalOverlay');
@@ -214,7 +184,6 @@
     }
   });
 
-  /* ---------- 8. Join button -> email form reveal & fancy modal ---------- */
   function wireJoinFlow(btnId, formId) {
     var btn = document.getElementById(btnId);
     var form = document.getElementById(formId);
@@ -223,7 +192,6 @@
     btn.addEventListener('click', function () {
       btn.classList.add('is-hidden');
       form.hidden = false;
-      // next frame so the transition actually runs
       requestAnimationFrame(function () {
         form.classList.add('is-shown');
         var input = form.querySelector('input[type="email"]');
@@ -250,23 +218,19 @@
   wireJoinFlow('heroJoinBtn', 'heroForm');
   wireJoinFlow('finalJoinBtn', 'finalForm');
 
-  /* ---------- 9. (Theme toggle removed — light only) ---------- */
-  var htmlEl = document.documentElement;
-
-  /* ---------- 10. Nav auto-hide between hero and the final stretch ---------- */
   var heroSectionEl = document.querySelector('.hero');
   var testimonialsEl = document.querySelector('.testimonials');
 
   if (nav && heroSectionEl && testimonialsEl) {
     var lastScrollY = window.scrollY;
     var navTicking = false;
-    var NAV_BUFFER = 80; // px, keeps the toggle from flickering right at the boundary
+    var NAV_BUFFER = 80;
 
     function updateNavVisibility() {
       var scrollY = window.scrollY;
       var heroBottom = heroSectionEl.offsetTop + heroSectionEl.offsetHeight;
       var testimonialsTop = testimonialsEl.offsetTop;
-      var scrollingUp = scrollY < lastScrollY - 2; // small tolerance to ignore jitter
+      var scrollingUp = scrollY < lastScrollY - 2;
 
       var inAlwaysVisibleZone = scrollY < heroBottom - NAV_BUFFER || scrollY >= testimonialsTop - NAV_BUFFER;
 
@@ -275,7 +239,6 @@
       } else if (scrollingUp) {
         nav.classList.remove('nav--hidden');
       } else if (scrollY > lastScrollY + 2) {
-        // scrolling down inside the mid-page zone
         nav.classList.add('nav--hidden');
       }
 
@@ -293,7 +256,6 @@
     updateNavVisibility();
   }
 
-  /* ---------- 11. Dynamic navbar contrast on light/dark sections ---------- */
   var lightSections = document.querySelectorAll('.proof, .solution, .content, .testimonials');
   if ('IntersectionObserver' in window && lightSections.length && nav) {
     var navColorObserver = new IntersectionObserver(function(entries) {
@@ -310,7 +272,6 @@
     lightSections.forEach(function(sec) { navColorObserver.observe(sec); });
   }
 
-  /* ---------- 12. Hero Background Video Crossfade Loop Engine ---------- */
   (function initHeroVideoCrossfade() {
     var vidA = document.getElementById('heroVidA');
     var vidB = document.getElementById('heroVidB');

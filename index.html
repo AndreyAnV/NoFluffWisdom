@@ -6,20 +6,16 @@
 <title>NoFluffWisdom — An Operating System for Better Thinking</title>
 <meta name="description" content="NoFluffWisdom is not another newsletter. It's a disciplined system for clearer thinking, built for people who are done consuming noise.">
 
+<link rel="icon" type="image/png" href="assets/NFW-logo-favicon.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="styles.css">
-
-<script>
-if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
-window.scrollTo(0, 0);
-</script>
 </head>
 <body class="is-loading">
 
-<!-- Fixed Site-Wide Video Background -->
 <div class="site-bg" id="heroBg" aria-hidden="true">
   <div class="site-bg__video-wrap">
     <video class="hero__video hero__video--a" id="heroVidA" autoplay muted playsinline preload="auto">
@@ -36,40 +32,30 @@ window.scrollTo(0, 0);
   <div class="hero__fog"></div>
 </div>
 
-<!-- Film grain + vignette overlay (site-wide, decorative) -->
 <div class="grain" aria-hidden="true"></div>
-
-<!-- Scroll progress indicator -->
 <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
 
-<!-- ============================================ -->
-<!-- NAV                                           -->
-<!-- ============================================ -->
 <header class="nav" id="nav">
   <div class="nav__inner">
     <a href="#top" class="nav__mark">NoFluffWisdom</a>
     <nav class="nav__links" aria-label="Primary">
       <a href="#proof">Impact</a>
-      <a href="#pillars">Philosophy</a>
       <a href="#content">Content</a>
+      <a href="#pillars">Philosophy</a>
       <a href="#experience">Inside</a>
       <a href="#join" class="nav__cta">Join free</a>
     </nav>
-      <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
-        <svg class="nav__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <polyline points="15 18 9 12 15 6"></polyline>
-        </svg>
-      </button>
-    </div>
+    <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <svg class="nav__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
   </div>
 </header>
 <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
 
 <main id="top">
 
-  <!-- ============================================ -->
-  <!-- 1. HERO — cinematic, typography-dominant      -->
-  <!-- ============================================ -->
   <section class="hero">
     <div class="hero__inner">
       <p class="eyebrow reveal reveal--blur hero__line-1">A system, not a subscription</p>
@@ -98,9 +84,6 @@ window.scrollTo(0, 0);
     <div class="hero__scroll-cue" aria-hidden="true"><span></span></div>
   </section>
 
-  <!-- ============================================ -->
-  <!-- 2. SOCIAL PROOF — a statement, not a stat card -->
-  <!-- ============================================ -->
   <section class="proof" id="proof">
     <div class="proof__inner">
       <div class="proof__statement reveal reveal--scale">
@@ -116,9 +99,6 @@ window.scrollTo(0, 0);
     </div>
   </section>
 
-  <!-- ============================================ -->
-  <!-- 3. PROBLEM — split layout, editorial          -->
-  <!-- ============================================ -->
   <section class="problem">
     <div class="problem__inner">
       <div class="problem__col-left">
@@ -151,26 +131,63 @@ window.scrollTo(0, 0);
     </div>
   </section>
 
-  <!-- ============================================ -->
-  <!-- 4. SOLUTION — full-width pull quote           -->
-  <!-- ============================================ -->
-  <section class="solution">
-    <div class="solution__inner">
-      <p class="eyebrow reveal reveal--blur">The solution</p>
-      <blockquote class="solution__quote reveal reveal--scale">
-        An operating system<br>for <em>how you think.</em>
-      </blockquote>
-      <p class="solution__body reveal reveal--blur">
-        Not another feed to check. A small, deliberate set of frameworks,
-        rituals, and source material — installed once a week, refined
-        over years — that quietly upgrades how you filter, decide, and focus.
-      </p>
+  <section class="content" id="content">
+    <div class="content__inner">
+      <p class="eyebrow reveal reveal--blur">Featured</p>
+      <h2 class="reveal reveal--scale">Not a feed. A curated shelf.</h2>
+
+      <div class="content__list">
+        <article class="content-row reveal reveal--blur">
+          <div class="content-row__media">
+            <img src="assets/the-focus-protocol.png" alt="The Focus Protocol" class="content-row__img" loading="lazy">
+          </div>
+          <div class="content-row__body">
+            <span class="content-row__tag">Flagship framework</span>
+            <h3>The Focus Protocol</h3>
+            <p>A five-step system for reclaiming attention in an environment engineered to fracture it.</p>
+            <a href="#" class="content-row__link">Read the framework <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+        <article class="content-row content-row--reverse reveal reveal--blur">
+          <div class="content-row__media">
+            <img src="assets/thinking-in-systems.png" alt="Thinking in Systems" class="content-row__img" loading="lazy">
+          </div>
+          <div class="content-row__body">
+            <span class="content-row__tag">Guide</span>
+            <h3>Thinking in Systems</h3>
+            <p>How to replace one-off decisions with defaults that compound.</p>
+            <a href="#" class="content-row__link">Read the guide <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+        <article class="content-row reveal reveal--blur">
+          <div class="content-row__media">
+            <img src="assets/the-discipline-playbook.png" alt="The Discipline Playbook" class="content-row__img" loading="lazy">
+          </div>
+          <div class="content-row__body">
+            <span class="content-row__tag">Playbook</span>
+            <h3>The Discipline Playbook</h3>
+            <p>Twelve rituals used by people who no longer negotiate with themselves.</p>
+            <a href="#" class="content-row__link">Read the playbook <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+        <article class="content-row content-row--reverse reveal reveal--blur">
+          <div class="content-row__media">
+            <img src="assets/books-worth-finishing.png" alt="Books Worth Finishing" class="content-row__img" loading="lazy">
+          </div>
+          <div class="content-row__body">
+            <span class="content-row__tag">Field notes</span>
+            <h3>Books Worth Finishing</h3>
+            <p>A short, unsentimental list — updated quarterly, never padded.</p>
+            <a href="#" class="content-row__link">See the list <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
-  <!-- ============================================ -->
-  <!-- 5. CORE PILLARS — the wow moment / centerpiece -->
-  <!-- ============================================ -->
   <section class="pillars" id="pillars">
     <div class="pillars__ambient" aria-hidden="true"></div>
     <div class="pillars__inner">
@@ -205,61 +222,20 @@ window.scrollTo(0, 0);
     </div>
   </section>
 
-  <!-- ============================================ -->
-  <!-- 6. FEATURED CONTENT — alternating horizontal rows -->
-  <!-- ============================================ -->
-  <section class="content" id="content">
-    <div class="content__inner">
-      <p class="eyebrow reveal reveal--blur">Featured</p>
-      <h2 class="reveal reveal--scale">Not a feed. A curated shelf.</h2>
-
-      <div class="content__list">
-        <article class="content-row reveal reveal--blur">
-          <div class="content-row__media"><!-- FEATURE IMAGE --></div>
-          <div class="content-row__body">
-            <span class="content-row__tag">Flagship framework</span>
-            <h3>The Focus Protocol</h3>
-            <p>A five-step system for reclaiming attention in an environment engineered to fracture it.</p>
-            <a href="#" class="content-row__link">Read the framework <span aria-hidden="true">→</span></a>
-          </div>
-        </article>
-
-        <article class="content-row content-row--reverse reveal reveal--blur">
-          <div class="content-row__media"><!-- FEATURE IMAGE --></div>
-          <div class="content-row__body">
-            <span class="content-row__tag">Guide</span>
-            <h3>Thinking in Systems</h3>
-            <p>How to replace one-off decisions with defaults that compound.</p>
-            <a href="#" class="content-row__link">Read the guide <span aria-hidden="true">→</span></a>
-          </div>
-        </article>
-
-        <article class="content-row reveal reveal--blur">
-          <div class="content-row__media"><!-- FEATURE IMAGE --></div>
-          <div class="content-row__body">
-            <span class="content-row__tag">Playbook</span>
-            <h3>The Discipline Playbook</h3>
-            <p>Twelve rituals used by people who no longer negotiate with themselves.</p>
-            <a href="#" class="content-row__link">Read the playbook <span aria-hidden="true">→</span></a>
-          </div>
-        </article>
-
-        <article class="content-row content-row--reverse reveal reveal--blur">
-          <div class="content-row__media"><!-- FEATURE IMAGE --></div>
-          <div class="content-row__body">
-            <span class="content-row__tag">Field notes</span>
-            <h3>Books Worth Finishing</h3>
-            <p>A short, unsentimental list — updated quarterly, never padded.</p>
-            <a href="#" class="content-row__link">See the list <span aria-hidden="true">→</span></a>
-          </div>
-        </article>
-      </div>
+  <section class="solution">
+    <div class="solution__inner">
+      <p class="eyebrow reveal reveal--blur">The solution</p>
+      <blockquote class="solution__quote reveal reveal--scale">
+        An operating system<br>for <em>how you think.</em>
+      </blockquote>
+      <p class="solution__body reveal reveal--blur">
+        Not another feed to check. A small, deliberate set of frameworks,
+        rituals, and source material — installed once a week, refined
+        over years — that quietly upgrades how you filter, decide, and focus.
+      </p>
     </div>
   </section>
 
-  <!-- ============================================ -->
-  <!-- 7. EXPERIENCE — compact spec-sheet rhythm     -->
-  <!-- ============================================ -->
   <section class="experience" id="experience">
     <div class="experience__inner">
       <p class="eyebrow reveal reveal--blur">Inside the system</p>
@@ -317,9 +293,6 @@ window.scrollTo(0, 0);
     </div>
   </section>
 
-  <!-- ============================================ -->
-  <!-- 8. TESTIMONIALS — featured quote + support    -->
-  <!-- ============================================ -->
   <section class="testimonials">
     <div class="testimonials__inner">
       <p class="eyebrow reveal reveal--blur">What readers say</p>
@@ -342,9 +315,6 @@ window.scrollTo(0, 0);
     </div>
   </section>
 
-  <!-- ============================================ -->
-  <!-- 9. FINAL CTA — dramatic bookend to the hero   -->
-  <!-- ============================================ -->
   <section class="final-cta" id="join">
     <div class="final-cta__bg" aria-hidden="true"></div>
     <div class="final-cta__inner">
@@ -367,17 +337,14 @@ window.scrollTo(0, 0);
 
 </main>
 
-<!-- ============================================ -->
-<!-- FOOTER                                        -->
-<!-- ============================================ -->
 <footer class="footer">
   <div class="footer__divider" role="presentation"></div>
   <div class="footer__inner">
     <span class="footer__mark">NoFluffWisdom</span>
     <nav class="footer__links" aria-label="Footer">
       <a href="#proof">Impact</a>
-      <a href="#pillars">Philosophy</a>
       <a href="#content">Content</a>
+      <a href="#pillars">Philosophy</a>
       <a href="#experience">Inside</a>
       <a href="#join">Join free</a>
     </nav>
@@ -385,7 +352,6 @@ window.scrollTo(0, 0);
   </div>
 </footer>
 
-<!-- Success Modal Pop-up -->
 <div class="modal" id="successModal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle">
   <div class="modal__overlay" id="modalOverlay"></div>
   <div class="modal__card" data-glass>
