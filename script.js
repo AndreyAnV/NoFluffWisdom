@@ -16,8 +16,18 @@
 (function () {
   'use strict';
 
+  /* ---------- Force scroll to top on refresh ---------- */
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  window.scrollTo(0, 0);
+  window.addEventListener('beforeunload', function () {
+    window.scrollTo(0, 0);
+  });
+
   /* ---------- 1. Loading fade-in ---------- */
   window.addEventListener('load', function () {
+    window.scrollTo(0, 0);
     requestAnimationFrame(function () {
       document.body.classList.remove('is-loading');
     });
@@ -135,19 +145,25 @@
 
   function animateCounter(el) {
     var target = parseInt(el.getAttribute('data-target'), 10) || 0;
-    var duration = 1500;
+    var duration = 2200;
     var start = null;
 
     function step(timestamp) {
       if (!start) start = timestamp;
       var progress = Math.min((timestamp - start) / duration, 1);
-      var eased = 1 - Math.pow(1 - progress, 3);
+      // Quintic ease-out glides softly into 20,000+ without any abrupt stops
+      var eased = 1 - Math.pow(1 - progress, 5);
       var value = Math.floor(eased * target);
-      el.textContent = value.toLocaleString('en-US');
+      el.textContent = value.toLocaleString('en-US') + '+';
+
       if (progress < 1) {
         window.requestAnimationFrame(step);
       } else {
         el.textContent = target.toLocaleString('en-US') + '+';
+        el.classList.add('is-finished');
+        setTimeout(function () {
+          el.classList.remove('is-finished');
+        }, 750);
       }
     }
     window.requestAnimationFrame(step);
