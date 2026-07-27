@@ -397,7 +397,7 @@ body:not(.is-loading) .nav {
 .hero {
   position: relative;
   min-height: 100vh;
-  min-height: 100dvh;
+  min-height: 100lvh;
   display: flex; align-items: center; justify-content: center;
   background: transparent;
   color: var(--on-dark);
@@ -468,7 +468,7 @@ body:not(.is-loading) .nav {
 .hero__note { font-family: var(--font-mono); font-size: 11px; color: rgba(230,225,222,0.77); }
 
 .hero__scroll-cue {
-  position: absolute; bottom: var(--sp-3); left: 50%; transform: translateX(-50%);
+  position: absolute; bottom: calc(var(--sp-3) + env(safe-area-inset-bottom, 0px)); left: 50%; transform: translateX(-50%);
   z-index: 2;
 }
 .hero__scroll-cue span {
