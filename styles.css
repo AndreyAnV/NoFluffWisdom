@@ -137,6 +137,11 @@ p { color: inherit; }
    Buttons — premium glass + bouncy lift + light sweep
    ------------------------------------------------------------ */
 .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1;
   position: relative;
   overflow: hidden;
   font-family: var(--font-body);
