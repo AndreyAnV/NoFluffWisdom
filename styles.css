@@ -129,16 +129,33 @@ p { color: inherit; }
 .reveal {
   opacity: 0;
   transform: translateY(18px);
-  transition: opacity 0.9s var(--ease-soft), transform 0.9s var(--ease-soft);
+  transition: opacity 0.85s var(--ease-soft), transform 0.85s var(--ease-soft), filter 0.85s var(--ease-soft);
 }
-.reveal.is-visible { opacity: 1; transform: translateY(0); }
+.reveal.is-visible { opacity: 1; transform: translateY(0); filter: blur(0); }
 
-/* Bouncy entrance — used on headline/heading text */
-.bounce-in.reveal {
-  transform: translateY(26px) scale(0.95);
-  transition: opacity 0.8s var(--ease-soft), transform 0.9s var(--ease-bounce);
+/* Animation Variety Types */
+.reveal--blur {
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(16px) scale(0.97);
+  transition: opacity 0.9s var(--ease-soft), filter 0.9s var(--ease-soft), transform 0.9s var(--ease-soft);
 }
-.bounce-in.reveal.is-visible { transform: translateY(0) scale(1); }
+.reveal--blur.is-visible { opacity: 1; filter: blur(0); transform: translateY(0) scale(1); }
+
+.reveal--scale {
+  opacity: 0;
+  transform: scale(0.93) translateY(18px);
+  transition: opacity 0.85s var(--ease-soft), transform 0.9s var(--ease-bounce);
+}
+.reveal--scale.is-visible { opacity: 1; transform: scale(1) translateY(0); }
+
+/* Hero staggered line delays for cinematic entrance */
+.hero__line-1 { transition-delay: 0.05s !important; }
+.hero__line-2 { transition-delay: 0.20s !important; }
+.hero__line-3 { transition-delay: 0.35s !important; }
+.hero__line-4 { transition-delay: 0.50s !important; }
+.hero__line-5 { transition-delay: 0.65s !important; }
+.hero__line-6 { transition-delay: 0.80s !important; }
 
 /* ------------------------------------------------------------
    Buttons — premium glass + bouncy lift + light sweep
@@ -160,7 +177,7 @@ p { color: inherit; }
 .btn--primary {
   background: linear-gradient(155deg, var(--red-bright), var(--red) 70%);
   color: var(--on-dark);
-  box-shadow: 0 1px 0 rgba(255,255,255,0.12) inset, 0 14px 30px -14px rgba(140,0,7,0.55);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.24), 0 12px 28px -8px rgba(180,0,12,0.55);
 }
 .btn--primary::before {
   content: "";
@@ -172,9 +189,13 @@ p { color: inherit; }
 }
 .btn--primary:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 1px 0 rgba(255,255,255,0.16) inset, 0 18px 34px -14px rgba(140,0,7,0.65);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.32), 0 18px 36px -10px rgba(180,0,12,0.65);
 }
-.btn--primary:active { transform: translateY(-1px) scale(0.99); }
+.btn--primary:active {
+  transform: scale(0.97);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 6px 16px -4px rgba(180,0,12,0.5);
+  transition: transform 0.1s var(--ease-soft);
+}
 .btn--primary:hover::before { left: 130%; }
 .btn--primary:disabled { opacity: 0.7; cursor: default; transform: none; }
 
@@ -483,17 +504,19 @@ p { color: inherit; }
 .proof__number {
   display: block;
   font-family: var(--font-display);
-  font-size: clamp(54px, 18vw, 120px);
-  line-height: 1;
+  font-size: clamp(64px, 20vw, 130px);
+  line-height: 0.95;
   color: var(--red-bright);
+  text-shadow: 0 0 28px rgba(180, 0, 12, 0.4);
+  letter-spacing: -0.02em;
 }
 .proof__caption {
   font-family: var(--font-display);
   font-style: italic;
-  font-size: clamp(18px, 5vw, 28px);
+  font-size: clamp(20px, 5.5vw, 30px);
   margin-top: var(--sp-2);
   color: var(--ink);
-  opacity: 0.85;
+  opacity: 0.95;
 }
 .proof__divider { width: 40px; height: 1px; background: var(--glass-paper-border); margin: 0 auto var(--sp-5); }
 .proof__strip {
@@ -577,10 +600,12 @@ p { color: inherit; }
 }
 .pillars__ambient {
   position: absolute; inset: 0; z-index: 0;
-  background: none;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 30%, rgba(180, 0, 12, 0.12), transparent 70%),
+    radial-gradient(ellipse 40% 40% at 85% 85%, rgba(230, 225, 222, 0.04), transparent 70%);
 }
 .pillars__inner { position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; }
-.pillars .eyebrow { color: var(--on-dark-dim); opacity: 0.8; }
+.pillars .eyebrow { color: var(--on-dark-dim); opacity: 0.85; }
 
 .pillars__bento {
   display: grid;
@@ -593,32 +618,44 @@ p { color: inherit; }
   --mx: 50%; --my: 50%;
   position: relative;
   background:
-    radial-gradient(420px circle at var(--mx) var(--my), rgba(255,255,255,0.10), transparent 55%),
-    var(--glass-dark);
-  border: 1px solid var(--glass-dark-border);
+    radial-gradient(500px circle at var(--mx) var(--my), rgba(255,255,255,0.14), transparent 60%),
+    rgba(230, 225, 222, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: var(--radius-lg);
   padding: var(--sp-4);
-  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.08),
-    0 24px 50px -28px rgba(0,0,0,0.55);
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    inset 0 -1px 0 rgba(0,0,0,0.35),
+    0 24px 50px -26px rgba(0,0,0,0.65);
   transition: transform 0.5s var(--ease-bounce), border-color 0.5s var(--ease), box-shadow 0.5s var(--ease-soft);
 }
 .pillar::before {
   content: "";
   position: absolute; top: 0; left: var(--sp-4); right: var(--sp-4); height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
-  opacity: 0.6;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent);
+  opacity: 0.75;
 }
 .pillar:hover {
   transform: translateY(-6px);
-  border-color: rgba(180,0,12,0.35);
+  border-color: rgba(180,0,12,0.45);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.12),
-    0 34px 60px -26px rgba(0,0,0,0.6),
-    0 0 40px -12px var(--red-glow);
+    inset 0 1px 0 rgba(255,255,255,0.3),
+    0 34px 60px -24px rgba(0,0,0,0.7),
+    0 0 45px -10px var(--red-glow);
 }
-.pillar--feature { padding: var(--sp-5); }
+.pillar:active {
+  transform: scale(0.98);
+  transition: transform 0.1s var(--ease-soft);
+}
+.pillar--feature {
+  padding: var(--sp-5);
+  border: 1px solid rgba(180, 0, 12, 0.35);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.25),
+    0 24px 60px -20px rgba(0,0,0,0.7),
+    0 0 35px -10px var(--red-glow);
+}
 .pillar--feature h3 { font-family: var(--font-display); font-weight: 400; font-size: clamp(26px, 7vw, 42px); margin-bottom: var(--sp-1); }
 .pillar--feature p { font-size: 15px; }
 .pillar__glyph {

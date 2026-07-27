@@ -76,6 +76,10 @@
   (function assignStaggerIndices() {
     var groups = new Map();
     document.querySelectorAll('.reveal').forEach(function (el) {
+      // Don't overwrite explicit hero line delays
+      if (el.className && el.className.indexOf('hero__line-') !== -1) {
+        return;
+      }
       var parent = el.parentElement;
       var count = groups.get(parent) || 0;
       el.__staggerIndex = count;
@@ -90,15 +94,17 @@
       function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            var idx = entry.target.__staggerIndex || 0;
-            var delay = Math.min(idx * 90, 360); // ms, capped
-            entry.target.style.transitionDelay = delay + 'ms';
+            if (!entry.target.className || entry.target.className.indexOf('hero__line-') === -1) {
+              var idx = entry.target.__staggerIndex || 0;
+              var delay = Math.min(idx * 80, 320); // ms, capped
+              entry.target.style.transitionDelay = delay + 'ms';
+            }
             entry.target.classList.add('is-visible');
             revealObserver.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
     );
     revealEls.forEach(function (el) { revealObserver.observe(el); });
   } else {
