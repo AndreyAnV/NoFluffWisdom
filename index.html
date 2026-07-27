@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NoFluffWisdom — An Operating System for Better Thinking</title>
+<meta name="description" content="NoFluffWisdom is not another newsletter. It's a disciplined system for clearer thinking, built for people who are done consuming noise.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Montserrat:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body class="is-loading">
+
+<!-- Fixed Site-Wide Video Background -->
+<div class="site-bg" id="heroBg" aria-hidden="true">
+  <div class="site-bg__video-wrap">
+    <video class="hero__video hero__video--a" id="heroVidA" autoplay muted playsinline preload="auto">
+      <source src="assets/musashi-bg-vid.mp4" type="video/mp4">
+    </video>
+    <video class="hero__video hero__video--b" id="heroVidB" muted playsinline preload="auto">
+      <source src="assets/musashi-bg-vid.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="site-bg__overlay"></div>
+  <div class="hero__glow"></div>
+  <div class="hero__orb hero__orb--1"></div>
+  <div class="hero__orb hero__orb--2"></div>
+  <div class="hero__fog"></div>
+</div>
+
+<!-- Film grain + vignette overlay (site-wide, decorative) -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- Scroll progress indicator -->
+<div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+<!-- ============================================ -->
+<!-- NAV                                           -->
+<!-- ============================================ -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#top" class="nav__mark">NoFluffWisdom</a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#pillars">Philosophy</a>
+      <a href="#content">Content</a>
+      <a href="#experience">Inside</a>
+      <a href="#proof">Reviews</a>
+      <a href="#join" class="nav__cta">Join free</a>
+    </nav>
+      <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <svg class="nav__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
+
+<main id="top">
+
+  <!-- ============================================ -->
+  <!-- 1. HERO — cinematic, typography-dominant      -->
+  <!-- ============================================ -->
+  <section class="hero">
+    <div class="hero__inner">
+      <p class="eyebrow reveal">A system, not a subscription</p>
+      <h1 class="hero__headline">
+        <span class="hero__line hero__line--main reveal bounce-in">Think clearly.</span>
+        <span class="hero__line hero__line--sub reveal bounce-in">in a world<br><em class="hero__highlight">built to distract you.</em></span>
+      </h1>
+      <p class="hero__sub reveal">
+        NoFluffWisdom is an operating system for better thinking — frameworks,
+        rituals, and writing for people who've stopped confusing information
+        with insight.
+      </p>
+
+      <div class="hero__action reveal">
+        <button class="btn btn--primary btn--reveal" id="heroJoinBtn" type="button">
+          <span>Join free</span>
+        </button>
+        <form class="reveal-form" id="heroForm" hidden>
+          <label for="heroEmail" class="sr-only">Email address</label>
+          <input type="email" id="heroEmail" placeholder="you@domain.com" required>
+          <button type="submit" class="btn btn--primary">Confirm →</button>
+        </form>
+      </div>
+      <p class="hero__note reveal">Free forever. One email a week. Unsubscribe in one click.</p>
+    </div>
+    <div class="hero__scroll-cue" aria-hidden="true"><span></span></div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 2. SOCIAL PROOF — a statement, not a stat card -->
+  <!-- ============================================ -->
+  <section class="proof" id="proof">
+    <div class="proof__inner">
+      <div class="proof__statement reveal">
+        <span class="proof__number" id="subscriberCount" data-target="20000">0</span>
+        <p class="proof__caption">Readers choosing clarity<br>over noise.</p>
+      </div>
+      <div class="proof__divider" role="presentation"></div>
+      <ul class="proof__strip reveal" aria-label="Reader impressions">
+        <li>The only email I read start to finish.</li>
+        <li>Feels like it was written for one person — me.</li>
+        <li>Cut my reading list from forty sources to one.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 3. PROBLEM — split layout, editorial          -->
+  <!-- ============================================ -->
+  <section class="problem">
+    <div class="problem__inner">
+      <div class="problem__col-left">
+        <p class="eyebrow reveal">The problem</p>
+        <h2 class="reveal bounce-in">You're not<br>undisciplined.<br><em class="problem__highlight">You're under-systemed.</em></h2>
+      </div>
+      <div class="problem__col-right">
+        <article class="problem__row reveal">
+          <span class="problem__mark">01</span>
+          <div>
+            <h3>Infinite input, no filter</h3>
+            <p>Forty tabs, ten newsletters, a feed that never ends — and none of it compounds into anything you can use.</p>
+          </div>
+        </article>
+        <article class="problem__row reveal">
+          <span class="problem__mark">02</span>
+          <div>
+            <h3>Motivation, not method</h3>
+            <p>Most advice asks for more willpower. It rarely gives you a repeatable process that works when willpower runs out.</p>
+          </div>
+        </article>
+        <article class="problem__row reveal">
+          <span class="problem__mark">03</span>
+          <div>
+            <h3>Noise dressed as depth</h3>
+            <p>Hot takes optimized for reaction, not for the slow work of actually changing how you think.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 4. SOLUTION — full-width pull quote           -->
+  <!-- ============================================ -->
+  <section class="solution">
+    <div class="solution__inner">
+      <p class="eyebrow reveal">The solution</p>
+      <blockquote class="solution__quote reveal bounce-in">
+        An operating system<br>for <em>how you think.</em>
+      </blockquote>
+      <p class="solution__body reveal">
+        Not another feed to check. A small, deliberate set of frameworks,
+        rituals, and source material — installed once a week, refined
+        over years — that quietly upgrades how you filter, decide, and focus.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 5. CORE PILLARS — the wow moment / centerpiece -->
+  <!-- ============================================ -->
+  <section class="pillars" id="pillars">
+    <div class="pillars__ambient" aria-hidden="true"></div>
+    <div class="pillars__inner">
+      <p class="eyebrow reveal">The philosophy</p>
+      <h2 class="reveal bounce-in">Four principles.<br>Every issue runs through them.</h2>
+
+      <div class="pillars__bento">
+        <article class="pillar pillar--feature reveal" data-glass>
+          <span class="pillar__glyph">Signal</span>
+          <h3>Signal over noise</h3>
+          <p>If it doesn't change a decision, it doesn't belong in your head. We cut ruthlessly so you don't have to — every issue is edited down until only the load-bearing idea remains.</p>
+        </article>
+
+        <article class="pillar reveal" data-glass>
+          <span class="pillar__glyph">System</span>
+          <h3>Systems over willpower</h3>
+          <p>Discipline is a design problem. We build the defaults so the right choice becomes the easy one.</p>
+        </article>
+
+        <article class="pillar reveal" data-glass>
+          <span class="pillar__glyph">Depth</span>
+          <h3>Depth over scroll</h3>
+          <p>One idea, understood completely, beats twenty skimmed. We optimize for retention, not reach.</p>
+        </article>
+
+        <article class="pillar reveal" data-glass>
+          <span class="pillar__glyph">Practice</span>
+          <h3>Practice over theory</h3>
+          <p>Every framework ships with an application — something to actually do this week, not just admire.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 6. FEATURED CONTENT — alternating horizontal rows -->
+  <!-- ============================================ -->
+  <section class="content" id="content">
+    <div class="content__inner">
+      <p class="eyebrow reveal">Featured</p>
+      <h2 class="reveal bounce-in">Not a feed. A curated shelf.</h2>
+
+      <div class="content__list">
+        <article class="content-row reveal">
+          <div class="content-row__media"><!-- FEATURE IMAGE --></div>
+          <div class="content-row__body">
+            <span class="content-row__tag">Flagship framework</span>
+            <h3>The Focus Protocol</h3>
+            <p>A five-step system for reclaiming attention in an environment engineered to fracture it.</p>
+            <a href="#" class="content-row__link">Read the framework <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+        <article class="content-row content-row--reverse reveal">
+          <div class="content-row__media"><!-- FEATURE IMAGE --></div>
+          <div class="content-row__body">
+            <span class="content-row__tag">Guide</span>
+            <h3>Thinking in Systems</h3>
+            <p>How to replace one-off decisions with defaults that compound.</p>
+            <a href="#" class="content-row__link">Read the guide <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+        <article class="content-row reveal">
+          <div class="content-row__media"><!-- FEATURE IMAGE --></div>
+          <div class="content-row__body">
+            <span class="content-row__tag">Playbook</span>
+            <h3>The Discipline Playbook</h3>
+            <p>Twelve rituals used by people who no longer negotiate with themselves.</p>
+            <a href="#" class="content-row__link">Read the playbook <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+        <article class="content-row content-row--reverse reveal">
+          <div class="content-row__media"><!-- FEATURE IMAGE --></div>
+          <div class="content-row__body">
+            <span class="content-row__tag">Field notes</span>
+            <h3>Books Worth Finishing</h3>
+            <p>A short, unsentimental list — updated quarterly, never padded.</p>
+            <a href="#" class="content-row__link">See the list <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 7. EXPERIENCE — compact spec-sheet rhythm     -->
+  <!-- ============================================ -->
+  <section class="experience" id="experience">
+    <div class="experience__inner">
+      <p class="eyebrow reveal">Inside the system</p>
+      <h2 class="reveal bounce-in">What you can count on, every week.</h2>
+
+      <div class="experience__list">
+        <article class="experience__row reveal">
+          <span class="experience__icon" aria-hidden="true"><!-- ICON --></span>
+          <div class="experience__text">
+            <h3>One email, one idea</h3>
+            <p>Every Sunday. Never a recap, never filler — one idea developed properly.</p>
+          </div>
+        </article>
+        <article class="experience__row reveal">
+          <span class="experience__icon" aria-hidden="true"><!-- ICON --></span>
+          <div class="experience__text">
+            <h3>A living framework library</h3>
+            <p>Every framework we publish stays archived and indexed, free, forever.</p>
+          </div>
+        </article>
+        <article class="experience__row reveal">
+          <span class="experience__icon" aria-hidden="true"><!-- ICON --></span>
+          <div class="experience__text">
+            <h3>No sponsor content</h3>
+            <p>No ads, no affiliate padding, no "brought to you by." Just the work.</p>
+          </div>
+        </article>
+        <article class="experience__row reveal">
+          <span class="experience__icon" aria-hidden="true"><!-- ICON --></span>
+          <div class="experience__text">
+            <h3>A quieter inbox</h3>
+            <p>Built to replace ten newsletters, not join them.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 8. TESTIMONIALS — featured quote + support    -->
+  <!-- ============================================ -->
+  <section class="testimonials">
+    <div class="testimonials__inner">
+      <p class="eyebrow reveal">What readers say</p>
+      <blockquote class="testimonial--featured reveal bounce-in">
+        <p>&ldquo;I stopped subscribing to everything else within a month.
+        This is the only one that respects my time.&rdquo;</p>
+        <cite>Product lead, fintech startup</cite>
+      </blockquote>
+
+      <div class="testimonials__support">
+        <blockquote class="testimonial reveal" data-glass>
+          <p>&ldquo;The Focus Protocol alone changed how I structure my mornings.&rdquo;</p>
+          <cite>Independent designer</cite>
+        </blockquote>
+        <blockquote class="testimonial reveal" data-glass>
+          <p>&ldquo;No fluff is not a tagline here — it's an editorial standard.&rdquo;</p>
+          <cite>Graduate researcher</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 9. FINAL CTA — dramatic bookend to the hero   -->
+  <!-- ============================================ -->
+  <section class="final-cta" id="join">
+    <div class="final-cta__bg" aria-hidden="true"></div>
+    <div class="final-cta__inner">
+      <h2 class="reveal bounce-in">Install the system.</h2>
+      <p class="reveal">Join 20,000 people who've traded noise for a discipline.</p>
+
+      <div class="hero__action reveal">
+        <button class="btn btn--primary btn--reveal" id="finalJoinBtn" type="button">
+          <span>Join free</span>
+        </button>
+        <form class="reveal-form" id="finalForm" hidden>
+          <label for="finalEmail" class="sr-only">Email address</label>
+          <input type="email" id="finalEmail" placeholder="you@domain.com" required>
+          <button type="submit" class="btn btn--primary">Confirm →</button>
+        </form>
+      </div>
+      <p class="final-cta__note reveal">Free forever. One email a week. Unsubscribe in one click.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================ -->
+<!-- FOOTER                                        -->
+<!-- ============================================ -->
+<footer class="footer">
+  <div class="footer__divider" role="presentation"></div>
+  <div class="footer__inner">
+    <span class="footer__mark">NoFluffWisdom</span>
+    <nav class="footer__links" aria-label="Footer">
+      <a href="#pillars">Philosophy</a>
+      <a href="#content">Content</a>
+      <a href="#experience">Inside</a>
+      <a href="#">Archive</a>
+      <a href="#">Contact</a>
+    </nav>
+    <p class="footer__copy">© 2026 NoFluffWisdom. No sponsors. No fluff.</p>
+  </div>
+</footer>
+
+<!-- Success Modal Pop-up -->
+<div class="modal" id="successModal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle">
+  <div class="modal__overlay" id="modalOverlay"></div>
+  <div class="modal__card" data-glass>
+    <button class="modal__close" id="modalClose" aria-label="Close modal">&times;</button>
+    <div class="modal__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </div>
+    <h3 class="modal__title" id="modalTitle">You're inside.</h3>
+    <p class="modal__body">Your first issue arrives Sunday. No fluff, ever.</p>
+    <button class="btn btn--primary modal__btn" id="modalConfirmBtn" type="button">Continue reading</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
