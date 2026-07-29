@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Books Worth Finishing — NoFluffWisdom</title>
+<meta name="description" content="A curated, unsentimental list of books that compound into actual thinking systems — updated quarterly, never padded.">
+
+<link rel="icon" type="image/png" href="assets/NFW-logo-favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script>
+(function(){
+  try {
+    var nav = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || {};
+    var isReload = nav.type === 'reload' || (performance.navigation && performance.navigation.type === 1);
+    if (isReload) {
+      sessionStorage.removeItem('nfw_transition_active');
+    } else if (sessionStorage.getItem('nfw_transition_active')) {
+      document.documentElement.classList.add('is-entering-mode');
+    }
+  } catch(e) {}
+})();
+</script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="is-loading page-book">
+<div class="page-transition" id="pageTransition" aria-hidden="true"><span class="page-transition__label">Loading...</span></div>
+
+<div class="site-bg" id="heroBg" aria-hidden="true">
+  <div class="site-bg__video-wrap">
+    <video class="hero__video hero__video--a" id="heroVidA" autoplay muted playsinline preload="auto">
+      <source src="assets/musashi-bg-vid.mp4" type="video/mp4">
+    </video>
+    <video class="hero__video hero__video--b" id="heroVidB" muted playsinline preload="auto">
+      <source src="assets/musashi-bg-vid.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="site-bg__overlay"></div>
+  <div class="hero__glow"></div>
+  <div class="hero__orb hero__orb--1"></div>
+  <div class="hero__orb hero__orb--2"></div>
+  <div class="hero__fog"></div>
+</div>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__mark">NoFluffWisdom</a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="index.html#proof">Impact</a>
+      <a href="index.html#content">Content</a>
+      <a href="index.html#pillars">Philosophy</a>
+      <a href="book.html" class="nav__link--active">Books</a>
+      <a href="index.html#join" class="nav__cta">Join free</a>
+    </nav>
+    <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <svg class="nav__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+  </div>
+</header>
+<div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero__inner">
+      <p class="eyebrow reveal reveal--blur hero__line-1">Field notes & curated shelf</p>
+      <h1 class="hero__headline">
+        <span class="hero__line hero__line--main reveal reveal--blur hero__line-2">Books worth finishing.</span>
+        <span class="hero__line hero__line--sub reveal reveal--blur hero__line-3">in a sea of<br><em class="hero__highlight">skimmed pages.</em></span>
+      </h1>
+      <p class="hero__sub reveal reveal--blur hero__line-4">
+        A short, unsentimental list of books that compound into actual thinking systems.
+        Updated quarterly, thoroughly battle-tested, and never padded with fluff.
+      </p>
+
+      <div class="hero__action reveal reveal--blur hero__line-5">
+        <button class="btn btn--primary btn--reveal" id="heroJoinBtn" type="button">
+          <span>Join free</span>
+        </button>
+        <form class="reveal-form" id="heroForm" hidden>
+          <label for="heroEmail" class="sr-only">Email address</label>
+          <input type="email" id="heroEmail" placeholder="you@domain.com" required>
+          <button type="submit" class="btn btn--primary"><span>Confirm →</span></button>
+        </form>
+      </div>
+      <p class="hero__note reveal reveal--blur hero__line-6">Free forever. One email a week. Unsubscribe in one click.</p>
+    </div>
+    <div class="hero__scroll-cue" aria-hidden="true"><span></span></div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__divider" role="presentation"></div>
+  <div class="footer__inner">
+    <span class="footer__mark">NoFluffWisdom</span>
+    <nav class="footer__links" aria-label="Footer">
+      <a href="index.html#proof">Impact</a>
+      <a href="index.html#content">Content</a>
+      <a href="index.html#pillars">Philosophy</a>
+      <a href="book.html">Books</a>
+      <a href="index.html#join">Join free</a>
+    </nav>
+    <p class="footer__copy">© 2026 NoFluffWisdom. No sponsors. No fluff.</p>
+  </div>
+</footer>
+
+<div class="modal" id="successModal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle">
+  <div class="modal__overlay" id="modalOverlay"></div>
+  <div class="modal__card" data-glass>
+    <button class="modal__close" id="modalClose" aria-label="Close modal">&times;</button>
+    <div class="modal__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </div>
+    <h3 class="modal__title" id="modalTitle">You're inside.</h3>
+    <p class="modal__body">Your first issue arrives Sunday. No fluff, ever.</p>
+    <button class="btn btn--primary modal__btn" id="modalConfirmBtn" type="button">Continue reading</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

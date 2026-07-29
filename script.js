@@ -1,6 +1,18 @@
 (function () {
   'use strict';
 
+  function updateHeroHeight() {
+    var vh = window.innerHeight;
+    document.documentElement.style.setProperty('--vh', (vh * 0.01) + 'px');
+    var hero = document.querySelector('.hero');
+    if (hero) {
+      hero.style.minHeight = vh + 'px';
+    }
+  }
+  updateHeroHeight();
+  window.addEventListener('resize', updateHeroHeight);
+  window.addEventListener('orientationchange', updateHeroHeight);
+
   if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
   }
@@ -10,6 +22,7 @@
   });
 
   window.addEventListener('load', function () {
+    updateHeroHeight();
     window.scrollTo(0, 0);
     requestAnimationFrame(function () {
       document.body.classList.remove('is-loading');
@@ -324,5 +337,77 @@
 
     vidA.addEventListener('timeupdate', checkCrossfade);
     vidB.addEventListener('timeupdate', checkCrossfade);
+  })();
+
+  (function initPageTransition() {
+    var isTransitioning = false;
+
+    function removeEnteringState() {
+      sessionStorage.removeItem('nfw_transition_active');
+      document.documentElement.classList.remove('is-entering-mode');
+      document.body.classList.remove('is-entering', 'is-transitioning');
+    }
+
+    var navEntries = (window.performance && window.performance.getEntriesByType) ? window.performance.getEntriesByType('navigation') : [];
+    var isReload = (navEntries.length > 0 && navEntries[0].type === 'reload') || (window.performance && window.performance.navigation && window.performance.navigation.type === 1);
+
+    if (isReload) {
+      removeEnteringState();
+    } else if (sessionStorage.getItem('nfw_transition_active') || document.documentElement.classList.contains('is-entering-mode')) {
+      document.body.classList.add('is-entering');
+
+      var hasRevealed = false;
+      function revealPage() {
+        if (hasRevealed) return;
+        hasRevealed = true;
+        requestAnimationFrame(function() {
+          requestAnimationFrame(function() {
+            removeEnteringState();
+          });
+        });
+      }
+
+      if (document.readyState === 'complete') {
+        setTimeout(revealPage, 400);
+      } else {
+        window.addEventListener('load', function() {
+          setTimeout(revealPage, 400);
+        });
+        setTimeout(revealPage, 2500);
+      }
+    } else {
+      removeEnteringState();
+    }
+
+    document.addEventListener('click', function(e) {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+      var anchor = e.target.closest('a');
+      if (!anchor) return;
+
+      var href = anchor.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('javascript:') || href.startsWith('mailto:') || anchor.target === '_blank') {
+        return;
+      }
+
+      var targetUrl = anchor.href;
+      var currentUrl = window.location.href.split('#')[0];
+      var cleanTarget = targetUrl.split('#')[0];
+
+      if (cleanTarget === currentUrl) {
+        return;
+      }
+
+      e.preventDefault();
+      if (isTransitioning) return;
+      isTransitioning = true;
+
+      sessionStorage.setItem('nfw_transition_active', 'true');
+      document.body.classList.add('is-transitioning');
+
+      setTimeout(function() {
+        window.location.href = targetUrl;
+      }, 950);
+    });
   })();
 })();

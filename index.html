@@ -12,9 +12,23 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
+<script>
+(function(){
+  try {
+    var nav = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || {};
+    var isReload = nav.type === 'reload' || (performance.navigation && performance.navigation.type === 1);
+    if (isReload) {
+      sessionStorage.removeItem('nfw_transition_active');
+    } else if (sessionStorage.getItem('nfw_transition_active')) {
+      document.documentElement.classList.add('is-entering-mode');
+    }
+  } catch(e) {}
+})();
+</script>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body class="is-loading">
+<div class="page-transition" id="pageTransition" aria-hidden="true"><span class="page-transition__label">Loading...</span></div>
 
 <div class="site-bg" id="heroBg" aria-hidden="true">
   <div class="site-bg__video-wrap">
@@ -42,7 +56,7 @@
       <a href="#proof">Impact</a>
       <a href="#content">Content</a>
       <a href="#pillars">Philosophy</a>
-      <a href="#experience">Inside</a>
+      <a href="book.html">Books</a>
       <a href="#join" class="nav__cta">Join free</a>
     </nav>
     <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
@@ -145,7 +159,7 @@
             <span class="content-row__tag">Flagship framework</span>
             <h3>The Focus Protocol</h3>
             <p>A five-step system for reclaiming attention in an environment engineered to fracture it.</p>
-            <a href="#" class="content-row__link">Read the framework <span aria-hidden="true">→</span></a>
+            <a href="book.html" class="content-row__link">Read the framework <span aria-hidden="true">→</span></a>
           </div>
         </article>
 
@@ -157,7 +171,7 @@
             <span class="content-row__tag">Guide</span>
             <h3>Thinking in Systems</h3>
             <p>How to replace one-off decisions with defaults that compound.</p>
-            <a href="#" class="content-row__link">Read the guide <span aria-hidden="true">→</span></a>
+            <a href="book.html" class="content-row__link">Read the guide <span aria-hidden="true">→</span></a>
           </div>
         </article>
 
@@ -169,7 +183,7 @@
             <span class="content-row__tag">Playbook</span>
             <h3>The Discipline Playbook</h3>
             <p>Twelve rituals used by people who no longer negotiate with themselves.</p>
-            <a href="#" class="content-row__link">Read the playbook <span aria-hidden="true">→</span></a>
+            <a href="book.html" class="content-row__link">Read the playbook <span aria-hidden="true">→</span></a>
           </div>
         </article>
 
@@ -181,7 +195,7 @@
             <span class="content-row__tag">Field notes</span>
             <h3>Books Worth Finishing</h3>
             <p>A short, unsentimental list — updated quarterly, never padded.</p>
-            <a href="#" class="content-row__link">See the list <span aria-hidden="true">→</span></a>
+            <a href="book.html" class="content-row__link">See the list <span aria-hidden="true">→</span></a>
           </div>
         </article>
       </div>
@@ -345,7 +359,7 @@
       <a href="#proof">Impact</a>
       <a href="#content">Content</a>
       <a href="#pillars">Philosophy</a>
-      <a href="#experience">Inside</a>
+      <a href="book.html">Books</a>
       <a href="#join">Join free</a>
     </nav>
     <p class="footer__copy">© 2026 NoFluffWisdom. No sponsors. No fluff.</p>

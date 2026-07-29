@@ -398,6 +398,7 @@ body:not(.is-loading) .nav {
   position: relative;
   min-height: 100vh;
   min-height: 100dvh;
+  min-height: calc(var(--vh, 1vh) * 100);
   display: flex; align-items: center; justify-content: center;
   background: transparent;
   color: var(--on-dark);
@@ -410,6 +411,7 @@ body:not(.is-loading) .nav {
     padding: 72px var(--sp-2) 40px;
     min-height: 100vh;
     min-height: 100dvh;
+    min-height: calc(var(--vh, 1vh) * 100);
   }
   .hero__headline {
     margin-bottom: var(--sp-2);
@@ -1028,3 +1030,80 @@ body:not(.is-loading) .nav {
 .modal__btn {
   width: 100%;
 }
+
+/* ------------------------------------------------------------
+   BOOK PAGE MODIFIERS (sharper video, reduced blur, clear text)
+   ------------------------------------------------------------ */
+body.page-book .hero__video {
+  filter: brightness(0.75) blur(0.5px);
+}
+body.page-book .hero__video.is-active {
+  opacity: 0.88;
+}
+body.page-book .site-bg__overlay {
+  background: radial-gradient(ellipse at center, rgba(13, 14, 9, 0.2), rgba(13, 14, 9, 0.65));
+}
+body.page-book .hero__line--sub em.hero__highlight,
+body.page-book .hero em {
+  color: var(--on-dark);
+}
+
+/* ------------------------------------------------------------
+   ANGLED PAGE TRANSITION CURTAIN (30° ANGLE SLIDE REVEAL)
+   ------------------------------------------------------------ */
+.page-transition {
+  position: fixed;
+  top: -70vh;
+  left: -50vw;
+  width: 200vw;
+  height: 240vh;
+  z-index: 99999;
+  background: #090A06;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-135%) rotate(-30deg);
+  transition: transform 1.0s cubic-bezier(0.65, 0, 0.35, 1);
+  will-change: transform;
+  box-shadow: 0 0 150px rgba(0, 0, 0, 0.98);
+}
+
+.page-transition__label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--on-dark);
+  transform: rotate(30deg);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+html.is-entering-mode body,
+body.is-entering,
+body.is-transitioning {
+  opacity: 1 !important;
+}
+
+.is-entering-mode .page-transition__label,
+body.is-transitioning .page-transition__label,
+body.is-entering .page-transition__label {
+  opacity: 0.9;
+}
+
+body.is-transitioning .page-transition {
+  transform: translateY(0%) rotate(-30deg);
+  pointer-events: auto;
+}
+
+.is-entering-mode .page-transition,
+body.is-entering .page-transition {
+  transform: translateY(0%) rotate(-30deg);
+  transition: none !important;
+}
+
+
+
