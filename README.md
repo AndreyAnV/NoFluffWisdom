@@ -16,6 +16,7 @@ Experience the interactive cinematic showcase live at:
 
 ## Features
 
+- **Seamless Angled Page Transition Curtain**: A 30° angled black curtain transition (`.page-transition`) with a centered monospace loading indicator. Intercepts navigation between pages (such as `index.html` $\rightarrow$ `book.html`), holding a zero-flicker state via a synchronous `<head>` script until all destination assets load, then sliding up smoothly to reveal the new page.
 - **Dual-Video Background Engine with Crossfade Loop**: Seamless background video looping using dual `<video>` elements (`#heroVidA` and `#heroVidB`) with a JavaScript `timeupdate` crossfade engine that eliminates buffer pauses, stuttering, or black frame resets.
 - **Unified RAF & IntersectionObserver Engine**: Drives smooth scroll progress indicators, sibling stagger reveal transitions, dynamic subscriber counter animation, and section visibility tracking in performance-optimized loops.
 - **Mouse-Reactive Glassmorphism (`data-glass`)**: Real-time cursor tracking calculates localized radial gradient coordinates (`--mx`, `--my`) to project dynamic specular light highlights across frosted glass cards.
